@@ -1,6 +1,5 @@
 /*index.jsx*/
 import React from "react";
-import Tag from "../components/tag.jsx"
 import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form'
 import { Row, Col, Button, Container } from 'react-bootstrap'
