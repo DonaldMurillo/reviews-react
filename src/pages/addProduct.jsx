@@ -8,18 +8,21 @@ import { Redirect, Link } from "react-router-dom"
 //make the api fetch turn it into an array and map rendering an element
 
 //Functional Component 
-const AddTagsPage = (props) => {
+const AddProductPage = (props) => {
     const formData = {
-        "name": "",
-        "description": "",
-        "scale": "",
+        "name": null,
+        "brand": null,
+        "price": null,
+        "categoryId": null,
+        "category": null,
         "adminsId": null,
-        "createdDate": "",
-        "updatedDate": "",
+        "admin": null,
+        "createdDate": null,
+        "updatedDate": null,
         "isActive": null
     };
     const today = new Date();
-    const [toTags, setToTags] = useState(false);
+    const [toProducts, setToProducts] = useState(false);
     const [isPosting, setPosting] = useState(false);
     const [isPosted, setIsPosted] = useState(false);
     const [form, setForm] = useState(formData);
@@ -27,7 +30,7 @@ const AddTagsPage = (props) => {
 
     async function postData() {
         setPosting(true);
-        const res = await fetch("https://localhost:44374/api/tags/", {
+        const res = await fetch("https://localhost:44374/api/products/", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -45,12 +48,8 @@ const AddTagsPage = (props) => {
         
     }
 
-    // useEffect(() => {
-    //     postData();
-    // }, [])
-
     function handleOnClick() {
-
+        handleSubmit();
     }
 
     function handleSubmit() {
@@ -62,22 +61,23 @@ const AddTagsPage = (props) => {
             form.updatedDate = today.toISOString();
             postData();
             setIsPosted(true);
-            setToTags(true)
+            setToProducts(true)
         }
 
     }
 
-    useEffect(() => {
-        handleSubmit();
-    }, [form.isActive])
+    function handlePosting(){
+        alert("Adding your new Category");
+        setTimeout(function(){}, 3000);
+    }
 
     return (
         
         <React.Fragment>
-            {isPosting ? alert("not posted"): null }
-            {toTags ? <Redirect to="/tags" /> : null}
+            {isPosting ? () => setTimeout(function(){alert("posetd")}, 3000): null }
+            {toProducts ? <Redirect to="/products" /> : null}
             <br></br>
-                <h2>Add a new Tag</h2> 
+                <h2>Add a new Category</h2> 
             <br></br>
             <Form onSubmit={handleSubmit}>
                 <Form.Group as={Row} controlId="name" >
@@ -90,20 +90,28 @@ const AddTagsPage = (props) => {
                     </Col>
                 </Form.Group>
 
-                <Form.Group as={Row} controlId="description">
+                <Form.Group as={Row} controlId="brand">
                     <Form.Label column sm={2}>
-                        Description
+                        Brand
     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control placeholder="Description" onChange={(des) => form.description = des.target.value} />
+                        <Form.Control placeholder="Brand" onChange={(des) => form.brand = des.target.value} />
                     </Col>
                 </Form.Group>
-                <Form.Group as={Row} controlId="scale">
+                <Form.Group as={Row} controlId="CategoryId">
                     <Form.Label column sm={2}>
-                        Scale
+                        CategoryId
     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control placeholder="Scale" onChange={(sca) => form.scale = sca.target.value} />
+                        <Form.Control placeholder="CategoryId" onChange={(sca) => form.cateforyId = sca.target.value} />
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="Price">
+                    <Form.Label column sm={2}>
+                        CategoryId
+    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control placeholder="Price" onChange={(sca) => form.price = sca.target.value} />
                     </Col>
                 </Form.Group>
                 <fieldset>
@@ -138,4 +146,4 @@ const AddTagsPage = (props) => {
     );
 };
 
-export default AddTagsPage;
+export default AddProductPage;

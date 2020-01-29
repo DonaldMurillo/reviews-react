@@ -39,7 +39,7 @@ const TagsPage = () => {
                         <h2>Tags</h2>
                     </Col>
                     <Col>
-                        <Button className="float-right" onClick={() => window.location = "/addtag"}>Add a New Tag</Button>
+                        <Button className="float-right" onClick={() => window.location = "/tags/add"}>Add a New Tag</Button>
                     </Col>
                 </Row>
             </Container>

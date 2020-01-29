@@ -16,6 +16,8 @@ import CategoriesPage from "../pages/categories"
 import NotFoundPage from "../pages/404"
 import AddTagsPage from "../pages/addTag";
 import ProductsPage from "../pages/products";
+import AddCategoryPage from "../pages/addCategory"
+import AddProductPage from "../pages/addProduct"
 
 //import Tag from "./components/tag";
 
@@ -27,9 +29,11 @@ const AdminRouter =(props) =>{
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/tags" component={TagsPage} />
-          <Route exact path="/addtag" component={AddTagsPage} />
+          <Route exact path="/tags/add" component={AddTagsPage} />
           <Route exact path="/categories" component={CategoriesPage} />
+          <Route exact path="/categories/add" component={AddCategoryPage} />
           <Route exact path="/products" component={ProductsPage} />
+          <Route exact path="/products/add" component={AddProductPage} />
           {/* <Route exact path="/users" component={UsersPage} /> */}
           <Route exact path="/404" component={NotFoundPage} />
           <Redirect to="/404" /> 
