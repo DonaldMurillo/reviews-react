@@ -1,8 +1,13 @@
 /*index.jsx*/
 import React from "react";
-import Tag from "../components/tag.jsx"
 import { useState, useEffect } from "react";
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import {
+    Col,
+    Container,
+    Row,
+    Button
+} from 'react-bootstrap'
 //make the api fetch turn it into an array and map rendering an element
 
 //Functional Component 
@@ -27,7 +32,16 @@ const CategoriesPage = () => {
     return (
         <React.Fragment>
             <br></br>
-            <h2>Categories</h2>
+            <Container>
+                <Row>
+                    <Col>
+                        <h2>Categories</h2>
+                    </Col>
+                    <Col>
+                        <Button className="float-right" onClick={() => window.location = "/categories/add"}>Add a New Category</Button>
+                    </Col>
+                </Row>
+            </Container>
             <br></br>
             <Table striped bordered hover responsive>
                 <thead>

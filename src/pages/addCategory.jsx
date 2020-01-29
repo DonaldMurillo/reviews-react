@@ -8,18 +8,19 @@ import { Redirect, Link } from "react-router-dom"
 //make the api fetch turn it into an array and map rendering an element
 
 //Functional Component 
-const AddTagsPage = (props) => {
+const AddCategoryPage = (props) => {
     const formData = {
         "name": "",
         "description": "",
-        "scale": "",
+        "type": "",
         "adminsId": null,
+        "admin": null,
         "createdDate": "",
         "updatedDate": "",
         "isActive": null
     };
     const today = new Date();
-    const [toTags, setToTags] = useState(false);
+    const [toCategories, setToCategories] = useState(false);
     const [isPosting, setPosting] = useState(false);
     const [isPosted, setIsPosted] = useState(false);
     const [form, setForm] = useState(formData);
@@ -27,7 +28,7 @@ const AddTagsPage = (props) => {
 
     async function postData() {
         setPosting(true);
-        const res = await fetch("https://localhost:44374/api/tags/", {
+        const res = await fetch("https://localhost:44374/api/categories/", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -45,12 +46,8 @@ const AddTagsPage = (props) => {
         
     }
 
-    // useEffect(() => {
-    //     postData();
-    // }, [])
-
     function handleOnClick() {
-
+        handleSubmit();
     }
 
     function handleSubmit() {
@@ -62,22 +59,23 @@ const AddTagsPage = (props) => {
             form.updatedDate = today.toISOString();
             postData();
             setIsPosted(true);
-            setToTags(true)
+            setToCategories(true)
         }
 
     }
 
-    useEffect(() => {
-        handleSubmit();
-    }, [form.isActive])
+    function handlePosting(){
+        alert("Adding your new Category");
+        setTimeout(function(){}, 3000);
+    }
 
     return (
         
         <React.Fragment>
-            {isPosting ? alert("not posted"): null }
-            {toTags ? <Redirect to="/tags" /> : null}
+            {isPosting ? () => setTimeout(function(){alert("posetd")}, 3000): null }
+            {toCategories ? <Redirect to="/categories" /> : null}
             <br></br>
-                <h2>Add a new Tag</h2> 
+                <h2>Add a new Category</h2> 
             <br></br>
             <Form onSubmit={handleSubmit}>
                 <Form.Group as={Row} controlId="name" >
@@ -98,12 +96,12 @@ const AddTagsPage = (props) => {
                         <Form.Control placeholder="Description" onChange={(des) => form.description = des.target.value} />
                     </Col>
                 </Form.Group>
-                <Form.Group as={Row} controlId="scale">
+                <Form.Group as={Row} controlId="Type">
                     <Form.Label column sm={2}>
                         Scale
     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control placeholder="Scale" onChange={(sca) => form.scale = sca.target.value} />
+                        <Form.Control placeholder="Type" onChange={(sca) => form.type = sca.target.value} />
                     </Col>
                 </Form.Group>
                 <fieldset>
@@ -138,4 +136,4 @@ const AddTagsPage = (props) => {
     );
 };
 
-export default AddTagsPage;
+export default AddCategoryPage;

@@ -2,6 +2,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table'
+import {
+    Col,
+    Container,
+    Row,
+    Button
+} from 'react-bootstrap'
 //make the api fetch turn it into an array and map rendering an element
 
 //Functional Component 
@@ -26,7 +32,16 @@ const ProductsPage = () => {
     return (
         <React.Fragment>
             <br></br>
-            <h2>Products</h2>
+            <Container>
+                <Row>
+                    <Col>
+                        <h2>Products</h2>
+                    </Col>
+                    <Col>
+                        <Button className="float-right" onClick={() => window.location = "/products/add"}>Add a New Products</Button>
+                    </Col>
+                </Row>
+            </Container>
             <br></br>
             <Table striped bordered hover responsive>
                 <thead>
